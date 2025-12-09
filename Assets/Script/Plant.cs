@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
@@ -11,11 +11,15 @@ public class Plant : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        sr.sprite = data.growthStages[0];
+
+        if (data != null && data.growthStages.Length > 0)
+            sr.sprite = data.growthStages[0];
     }
 
     void Update()
     {
+        if (data == null) return;
+
         timer += Time.deltaTime;
 
         if (timer >= data.timePerStage && stage < data.growthStages.Length - 1)
@@ -26,8 +30,21 @@ public class Plant : MonoBehaviour
         }
     }
 
+    // ✅ INI YANG DIPANGGIL TILE SAAT MAU PANEN
     public bool IsFullyGrown()
     {
-        return stage == data.growthStages.Length - 1;
+        return stage >= data.growthStages.Length - 1;
     }
+    public void SetPlantData(PlantData newData)
+    {
+        data = newData;
+        stage = 0;
+        timer = 0f;
+
+        if (sr == null)
+            sr = GetComponent<SpriteRenderer>();
+
+        sr.sprite = data.growthStages[0];
+    }
+
 }
