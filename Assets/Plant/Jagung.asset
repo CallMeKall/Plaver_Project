@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1df8535331696d49be946787d7b299b, type: 3}
+  m_Name: Jagung
+  m_EditorClassIdentifier: Assembly-CSharp::PlantData
+  plantName: Jagung
+  growthStages:
+  - {fileID: 3428704598265857660, guid: dbfa10f6de7561d44837d286683fdc9f, type: 3}
+  - {fileID: 8100049346587370135, guid: 89e397c54a7207c48a2d75f3ded76ce9, type: 3}
+  - {fileID: 4468842555648032231, guid: e259885f8dfc1004abbcafe8f4ba4ef8, type: 3}
+  timePerStage: 4

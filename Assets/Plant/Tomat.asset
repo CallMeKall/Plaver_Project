@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1df8535331696d49be946787d7b299b, type: 3}
+  m_Name: Tomat
+  m_EditorClassIdentifier: Assembly-CSharp::PlantData
+  plantName: Tomat
+  growthStages:
+  - {fileID: 9155398364732081085, guid: a4cc2f2d871f7c44fb147e84fef65a4f, type: 3}
+  - {fileID: 4824649792193583604, guid: d3cb1e40d881ee64e82508e51ce54eaf, type: 3}
+  - {fileID: 5888682603552969776, guid: ce4ff781fc3f0bb409fa32ccc393fd80, type: 3}
+  timePerStage: 3
