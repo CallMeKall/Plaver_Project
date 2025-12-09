@@ -3,7 +3,7 @@
 public class Tile : MonoBehaviour
 {
     public Transform plantPoint;
-    public GameObject plantPrefab;  // ✅ SATU PREFAB UNIVERSAL (berisi script Plant)
+    public GameObject plantPrefab;  //SATU PREFAB UNIVERSAL (berisi script Plant)
 
     private GameObject currentPlant;
     private bool isPlanted = false;
@@ -20,42 +20,52 @@ public class Tile : MonoBehaviour
 
     public void Interact()
     {
-        // =========================
-        // ✅ JIKA TANAH KOSONG → TANAM
-        // =========================
+        // JIKA TANAH KOSONG → TANAM
         if (!isPlanted)
         {
             PlantData selectedData = PlantManager.Instance.GetSelectedPlantData();
+            if (selectedData == null) return;
 
-            if (selectedData != null)
-            {
-                Vector3 spawnPos = plantPoint != null ? plantPoint.position : transform.position;
+            Vector3 spawnPos = plantPoint != null ? plantPoint.position : transform.position;
 
-                currentPlant = Instantiate(plantPrefab, spawnPos, Quaternion.identity, transform);
+            currentPlant = Instantiate(plantPrefab, spawnPos, Quaternion.identity, transform);
 
-                // ✅ KIRIM DATA TANAMAN KE SCRIPT PLANT
-                currentPlant.GetComponent<Plant>().SetPlantData(selectedData);
+            // KIRIM DATA TANAMAN KE SCRIPT PLANT
+            currentPlant.GetComponent<Plant>().SetPlantData(selectedData);
 
-                isPlanted = true;
-            }
+            isPlanted = true;
+            return;
         }
-        // =========================
-        // ✅ JIKA SUDAH ADA TANAMAN → PANEN
-        // =========================
+
+        // JIKA SUDAH ADA TANAMAN → PANEN / CABUT
+        Plant plant = currentPlant.GetComponent<Plant>();
+
+        if (plant == null)
+        {
+            currentPlant = null;
+            isPlanted = false;
+            return;
+        }
+
+        // JIKA SUDAH MATANG → PANEN
+        if (plant.IsFullyGrown())
+        {
+            Debug.Log("Panen berhasil!");
+
+            HarvestManager.Instance.AddHarvest(plant.data, 1);
+
+            Destroy(currentPlant);
+            currentPlant = null;
+            isPlanted = false;
+        }
+        // JIKA BELUM MATANG → CABUT
         else
         {
-            Plant plant = currentPlant.GetComponent<Plant>();
+            Debug.Log("Tanaman belum matang, dicabut.");
 
-            if (plant != null && plant.IsFullyGrown())
-            {
-                Debug.Log("Panen berhasil!");
-                Destroy(currentPlant);
-                isPlanted = false;
-            }
-            else
-            {
-                Debug.Log("Tanaman belum siap panen");
-            }
+            Destroy(currentPlant);
+            currentPlant = null;
+            isPlanted = false;
         }
     }
 }

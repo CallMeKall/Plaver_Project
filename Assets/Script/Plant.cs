@@ -46,5 +46,11 @@ public class Plant : MonoBehaviour
 
         sr.sprite = data.growthStages[0];
     }
+    public void Harvest()
+    {
+        HarvestManager.Instance.AddHarvest(data, 1);
+        Destroy(gameObject);
+    }
+
 
 }

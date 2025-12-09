@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector2 lookDirection = Vector2.down;
-    private Vector2 lastDirection = Vector2.down;   // ✅ SIMPAN ARAH TERAKHIR
+    private Vector2 lastDirection = Vector2.down;   //SIMPAN ARAH TERAKHIR
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // =========================
-        // ✅ INPUT GERAK (WASD)
-        // =========================
+        // INPUT GERAK (WASD)
         moveInput = Vector2.zero;
 
         if (Keyboard.current.wKey.isPressed) moveInput.y = 1;
@@ -37,46 +35,34 @@ public class PlayerController : MonoBehaviour
 
         moveInput = moveInput.normalized;
 
-        // =========================
-        // ✅ GERAKKAN PLAYER
-        // =========================
+        // GERAKKAN PLAYER
         Vector3 movement = new Vector3(moveInput.x, moveInput.y, 0);
         transform.position += movement * speed * Time.deltaTime;
 
-        // =========================
-        // ✅ SIMPAN ARAH TERAKHIR
-        // =========================
+        // SIMPAN ARAH TERAKHIR
         if (moveInput != Vector2.zero)
         {
             lookDirection = moveInput;
             lastDirection = moveInput;
         }
 
-        // =========================
-        // ✅ UPDATE ANIMASI (GERAK + IDLE ARAH)
-        // =========================
+        // UPDATE ANIMASI (GERAK + IDLE ARAH)
         Vector2 animDir = moveInput != Vector2.zero ? moveInput : lastDirection;
 
         animator.SetFloat("moveX", animDir.x);
         animator.SetFloat("moveY", animDir.y);
         animator.SetBool("isMoving", moveInput != Vector2.zero);
 
-        // =========================
-        // ✅ FLIP KIRI / KANAN SAAT IDLE & JALAN
-        // =========================
+        // FLIP KIRI / KANAN SAAT IDLE & JALAN
         if (animDir.x < 0)
             spriteRenderer.flipX = false;   // kiri
         else if (animDir.x > 0)
             spriteRenderer.flipX = true;    // kanan
 
-        // =========================
-        // ✅ DETEKSI TILE
-        // =========================
+        // DETEKSI TILE
         DetectTile();
 
-        // =========================
         // ✅ INTERAKSI (TOMBOL E)
-        // =========================
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             if (currentTile != null)

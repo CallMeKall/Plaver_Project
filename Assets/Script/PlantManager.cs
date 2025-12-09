@@ -6,7 +6,7 @@ public class PlantManager : MonoBehaviour
     public static PlantManager Instance;
 
     [Header("Plant Data List")]
-    public PlantData[] plantDatas;   // ✅ PILIH TANAMAN DARI PLANT DATA
+    public PlantData[] plantDatas;   //PILIH TANAMAN DARI PLANT DATA
     public int selectedIndex = 0;
 
     void Awake()

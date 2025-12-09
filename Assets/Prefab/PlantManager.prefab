@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5823643004496855175}
   - component: {fileID: 6157198922880328222}
+  - component: {fileID: 6149197926332656767}
   m_Layer: 0
   m_Name: PlantManager
   m_TagString: Untagged
@@ -49,3 +50,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7061b2f04d456464c94d1c2d61db3183, type: 2}
   - {fileID: 11400000, guid: 985ec525a04ab5e44a62189f9b2a8f3e, type: 2}
   selectedIndex: 0
+--- !u!114 &6149197926332656767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827683822221114962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adac676659ef87d4f8c3fe78185a464b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HarvestManager
